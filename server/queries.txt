@@ -1,0 +1,11 @@
+to get for hot, new, and top singularly (information on posts):
+query:
+    SELECT name, username, title, image_url, ROUND((NOW() - time_posted) / 3600) AS time_passed, (COUNT(u2.user_id) - COUNT(d.user_id)) AS result FROM posts
+    INNER JOIN subreddits s on posts.subreddit_id = s.subreddit_id
+    INNER JOIN users u on posts.poster_id = u.user_id
+    INNER JOIN photos p on posts.photo_id = p.photo_id
+    LEFT JOIN upvotes u2 on posts.post_id = u2.post_id
+    LEFT JOIN downvotes d on posts.post_id = d.post_id
+    ORDER BY result;
+
+

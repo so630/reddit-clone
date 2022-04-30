@@ -1,0 +1,11 @@
+.posts_container {
+    position: fixed;
+    top: 112px;
+    left: 300px;
+    width: calc(100% - 300px);
+    height: calc(100% - 112px);
+
+    padding-top: 40px;
+
+    text-align: center;
+}

@@ -1,0 +1,46 @@
+.option {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 100%;
+    position: relative;
+}
+
+.option > h1 {
+    margin: 0;
+    height: fit-content;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+
+.option:hover {
+    cursor: pointer;
+}
+
+.option > hr {
+    position: absolute;
+    height: 2px;
+    width: 0;
+    border: 0;
+    background: #FF4500;
+    bottom: -2%;
+    transition: 0.3s ease;
+}
+
+.option:hover > hr {
+    width: 100%;
+}
+
+.option:hover > h1 {
+    color: #FF4500;
+}
+
+.selected > hr {
+    width: 100%;
+}
+
+.selected > h1 {
+    color: #FF4500;
+}

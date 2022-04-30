@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.subreddit_card {
+    margin: 20px;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1px;
+
+    text-align: left;
+    padding-left: 49px;
+    padding-top: 16px;
+
+    position: relative;
+    transition: 0.2s ease;
+}
+
+.subreddit_card:hover {
+    cursor: pointer;
+    background: #FF4500;
+    color: white !important;
+}
+
+.subreddit_card:active {
+    opacity: 0.8;
+}
+
+.subreddit_card:hover > * {
+    color: white;
+}
+
+.subreddit_card:hover span {
+    color: white;
+}
+
+.subreddit_card > img {
+    width: 120px;
+
+    position: absolute;
+    right: 29px;
+    top: 17px;
+
+    border-radius: 1px;
+}
+
+.subreddit_card > h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    margin: 0;
+
+    color: #FF4500;
+}
+
+.subreddit_card > h5 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    margin: 0;
+}
+
+span {
+    color: #FF4500;
+}
+
+.subreddit_card > p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+
+    color:  #CFCFCF;
+}
+
+.subreddit_card {
+    padding-bottom: 7px;
+}

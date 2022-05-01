@@ -12,6 +12,10 @@ export default function MenuItem({name, image, selected, linkTo}) {
         }
     })
 
+    document.addEventListener('dropdownClick', () => {
+        setClicked(false);
+    })
+
     return (
         <NavLink to={linkTo ? linkTo : ""} className={({isActive}) => {
             if (isActive) {

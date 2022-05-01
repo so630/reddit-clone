@@ -1,0 +1,60 @@
+.form {
+    position: fixed;
+    left: 300px;
+
+    text-align: center;
+
+    width: calc(100% - 300px);
+    height: 100%;
+
+    font-family: "Roboto", sans-serif;
+
+    display: flex;
+
+}
+
+.form > div {
+    margin: 0 auto;
+
+    width: fit-content;
+
+    padding: 10px 50px 10px;
+
+    background: #FFFFFF;
+
+    height: fit-content;
+
+    justify-self: center;
+    align-self: center;
+
+    position: relative;
+    bottom: 100px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.09);
+}
+
+.form > div > h1 {
+    font-weight: 400;
+}
+
+body {
+
+}
+
+.form > div > button {
+    position: static;
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+p {
+    color: #9b9b9b;
+}
+
+p > a {
+    color: #FF4500;
+    text-decoration: underline;
+}

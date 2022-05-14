@@ -1,15 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TopBar from "../../topbar/TopBar";
 import styles from './MainPage.module.css';
+import styles2 from '../../socials/subreddit-page/Subreddit.module.css';
 import PostCard from "../../cards-global/post-card/PostCard";
 
 export default function MainPage() {
+
+    const [posts, setPosts] = useState([]);
+    const [method, setMethod] = useState('new');
+
+    useEffect(() => {
+        fetch(`/posts/posts?method=${method}`).then(r => r.json()).then(r => {
+            setPosts(r);
+        })
+
+        document.addEventListener('selection-topbar', (event) => {
+            fetch(`/posts/posts?method=${event.detail}`).then(r => r.json()).then(r => {
+                setPosts(r);
+                setMethod(event.detail);
+            })
+        })
+    }, [])
+
     return (
         <>
             <TopBar />
             <div className={styles.posts_container}>
-                <div style={{display: 'inline-block'}}>
-                    <PostCard image={'https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg'} title={"13 years ago today, a true patriot lost his life. Rest in Peace big guy"} user={"the_big_mothergoose"} subreddit={"MURICA"} />
+                <div className={styles2.container}>
+                    <div className={styles2.container}>
+                        {posts.map(({name, username, title, result, time_passed, image_url, id}) => <PostCard id={id} image={image_url} user={username} subreddit={name} title={title} datetime={time_passed} />)}
+                    </div>
                 </div>
             </div>
         </>

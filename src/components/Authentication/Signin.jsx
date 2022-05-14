@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./Authentication.module.css";
-import "./InputStyle.css";
+import "../InputStyle.css";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
@@ -14,9 +14,11 @@ export default function Signin() {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({password: password, email: email})
-        }).then(r => r.text()).then(r => {
-            r = JSON.parse(r);
-
+        }).then(r => r.json()).then(r => {
+            if (!r.result) {
+                window.location.reload();
+                return;
+            }
             const cookies = new Cookies();
             cookies.set('session', r.hash + '\t' + r.id, { path: '/', maxAge: 2*60*60 });
 

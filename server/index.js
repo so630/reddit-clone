@@ -14,6 +14,12 @@ app.use('/auth', authRoutes);
 const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 
+const subredditRoutes = require('./routes/subreddits');
+app.use('/subreddits', subredditRoutes);
+
+const postRoutes = require('./routes/post');
+app.use('/posts', postRoutes);
+
 app.listen(3001, () =>
   console.log('Express server is running on localhost:3001')
 );

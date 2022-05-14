@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
 
                 conn.query(q3, [username, hash, email, avatar_id], (err, results, fields) => {
                     if (err) throw err;
-                    res.json({status: 200});
+                    res.json({results, hash: hash, id: results.insertId});
                 })
             })
         })

@@ -10,14 +10,18 @@
 
     font-family: 'Roboto', sans-serif;
 
-    position: relative;
+    position: absolute;
     transition: 0.2s ease;
-    bottom: 20px;
+    top: 10px;
     opacity: 0;
+
+    width: 80%;
+
+    background: #FFFFFF;
 }
 
 .open {
-    bottom: 0;
+    top: 20px;
     opacity: 1;
 }
 

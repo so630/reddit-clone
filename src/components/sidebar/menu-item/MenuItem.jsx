@@ -1,20 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './MenuItem.module.css';
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 
 export default function MenuItem({name, image, selected, linkTo}) {
-    const [clicked, setClicked] = useState(selected);
+    const [clicked, setClicked] = useState(false);
     const customEvent = new CustomEvent('selection', {detail: name});
+    const loc = useLocation();
 
-    document.addEventListener('selection', (details) => {
-        if (details.detail !== name) {
+    useEffect(() => {
+        document.addEventListener('selection', (details) => {
+            if (details.detail !== name) {
+                console.log(details.detail, name);
+                setClicked(false);
+            }
+        })
+
+        document.addEventListener('dropdownClick', () => {
             setClicked(false);
-        }
-    })
+        })
 
-    document.addEventListener('dropdownClick', () => {
-        setClicked(false);
-    })
+        if (name === 'Home') {
+            if (loc.pathname === '/home') {
+                setClicked(true);
+                document.dispatchEvent(customEvent);
+            }
+        } else if (name === 'My subreddits') {
+            if (loc.pathname === '/subreddits') {
+                setClicked(true);
+                document.dispatchEvent(customEvent);
+            }
+        }
+    }, [])
 
     return (
         <NavLink to={linkTo ? linkTo : ""} className={({isActive}) => {

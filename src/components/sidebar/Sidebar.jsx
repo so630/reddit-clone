@@ -17,6 +17,7 @@ import {Navigate} from "react-router-dom";
 export default function Sidebar({}) {
     const [dropdown, setDropdown] = useState(false);
     const [username, setUsername] = useState('');
+    const [redirect, setRedirect] = useState(true);
 
     const getUsername = () => {
         const cookies = new Cookies();
@@ -53,6 +54,13 @@ export default function Sidebar({}) {
         window.location.replace('/');
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const event = new CustomEvent('search', {detail: e.target.value});
+            document.dispatchEvent(event);
+            window.location.replace('/search?search=' + e.target.value);
+        }
+    }
 
     return (
         <>
@@ -79,7 +87,7 @@ export default function Sidebar({}) {
 
                 <div className={styles.search} style={dropdown ? {position: 'relative', top: '35px'} : {}}>
                     <img src={search} alt=""/>
-                    <input type="text" placeholder="Search..."/>
+                    <input type="text" placeholder="Search..." onKeyDown={handleKeyDown}/>
                 </div>
 
                 <div className={styles.options}>

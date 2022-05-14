@@ -16,20 +16,11 @@
 
 .subreddit_card:hover {
     cursor: pointer;
-    background: #FF4500;
-    color: white !important;
+    opacity: 0.6;
 }
 
 .subreddit_card:active {
-    opacity: 0.8;
-}
-
-.subreddit_card:hover > * {
-    color: white;
-}
-
-.subreddit_card:hover span {
-    color: white;
+    opacity: 0.4;
 }
 
 .subreddit_card > img {

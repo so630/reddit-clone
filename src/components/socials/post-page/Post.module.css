@@ -1,0 +1,132 @@
+.post {
+    width: calc(100% - 300px);
+    height: fit-content;
+    position: absolute;
+    left: 300px;
+    top: 60px;
+    overflow-x: hidden;
+
+}
+
+.container > h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: flex-end;
+
+    color: rgba(0, 0, 0, 0.87);
+    position: relative;
+    left: 12%;
+    top: 20px;
+
+    margin-right: 500px;
+}
+
+.container > img {
+    width: 530px;
+
+    position: relative;
+    left: 12%;
+    top: 10px;
+
+    display: block;
+}
+
+.container > h5 {
+    position: relative;
+    left: 12%;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.container > p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+
+    color: rgba(0, 0, 0, 0.5);
+
+    position: relative;
+    left: 12%;
+    top: 10px;
+}
+
+.container {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+
+    padding-bottom: 50px;
+
+}
+
+.container > h6 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.votes {
+    display: inline-block;
+
+    width: 40px;
+
+    padding: 10px;
+    text-align: center;
+
+    position: absolute;
+    left: 9%;
+}
+
+.votes > img {
+    width: 10px;
+}
+
+.votes > p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    position: relative;
+    top: 1px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.votes > #bottom {
+    transform: rotate(180deg);
+    position: relative;
+    bottom: 1px;
+}
+
+.fill_bottom {
+    filter: invert(48%) sepia(93%) saturate(1656%) hue-rotate(206deg) brightness(106%) contrast(102%);
+}
+
+.fill {
+    filter: invert(32%) sepia(59%) saturate(3999%) hue-rotate(1deg) brightness(103%) contrast(104%);
+}
+
+.votes > img:hover {
+    cursor: pointer;
+}
+
+
+/* comments stuff down here */
+
+.comments {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 2px;
+
+    width: 100%;
+    height: 735px;
+}

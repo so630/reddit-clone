@@ -2,9 +2,10 @@ import React from "react";
 import styles from './SubredditForm.module.css';
 import SubredditCard from "../../../cards-global/subreddit-card/SubredditCard";
 import {useState, useEffect, useRef} from 'react';
-import '../../../Authentication/InputStyle.css';
+import '../../../InputStyle.css';
+import Cookies from "universal-cookie";
 
-export default function SubredditForm() {
+export default function SubredditForm({handleClose}) {
     const [name, setName] = useState('unnamed');
     const [desc, setDesc] = useState('write a description');
     const form = useRef(null);
@@ -14,6 +15,23 @@ export default function SubredditForm() {
             form.current.classList.add(styles.open);
         })
     }, []);
+
+    const handleSubmit = () => {
+        const cookies = new Cookies();
+        let id = cookies.get('session').split('\t')[1];
+        document.querySelector('#name').value = '';
+        document.querySelector('#description').value = '';
+        fetch('/subreddits/create', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: name, description: desc, user: id})
+        }).then(r => r.json()).then(r => {
+            console.log(r);
+            const event = new Event('subreddit-create');
+            document.dispatchEvent(event);
+            handleClose();
+        })
+    }
 
 
     return (
@@ -30,7 +48,8 @@ export default function SubredditForm() {
 
             <SubredditCard name={name} description={desc} posts={0} members={0} />
 
-            <button disabled={!(name !== 'unnamed' && desc !== 'no description given')}>Submit</button>
+            <button disabled={!(name !== 'unnamed' && desc !== 'no description given')} onClick={handleSubmit}>Submit</button>
+            <button onClick={handleClose} style={{right: '110px'}}>Close</button>
         </div>
     )
 }

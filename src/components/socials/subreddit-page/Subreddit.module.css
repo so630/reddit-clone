@@ -1,0 +1,54 @@
+.posts_container {
+    position: fixed;
+    top: 112px;
+    left: 300px;
+    width: calc(100% - 300px);
+    height: calc(100% - 112px);
+
+    padding-top: 40px;
+
+    text-align: center;
+
+    display: flex;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    text-align: center;
+}
+
+.container > .container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: flex-start;
+    gap: 10px;
+
+    height: fit-content;
+    width: 80%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container > div {
+    display: inline-block;
+}
+
+.add_button {
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+    height: 64px;
+    width: 64px;
+
+    padding: 0;
+
+    border-radius: 100%;
+
+    font-size: 34px !important;
+}

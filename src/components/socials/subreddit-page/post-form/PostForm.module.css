@@ -1,0 +1,24 @@
+.form {
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+
+    width: 700px;
+    height: 400px;
+
+    background: #FFFFFF;
+
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+
+    font-family: 'Roboto', sans-serif;
+
+    padding-left: 30px;
+}
+
+.form > div {
+    width: 60%;
+}
+
+.cancel {
+    right: 80px;
+}

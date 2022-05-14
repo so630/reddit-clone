@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from "../Authentication/Authentication.module.css";
-import "../Authentication/InputStyle.css";
+import "../InputStyle.css";
 import Cookies from "universal-cookie";
 import loadingsvg from '../assets/loading.svg';
 
@@ -23,7 +23,7 @@ export default function Settings() {
         }).then(r => r.json()).then(r => {
             setLoading(false);
             setInitial({
-                username: r[0].username,
+                title: r[0].username,
                 avatar: r[0].avatar,
                 email: r[0].email
             });
@@ -48,7 +48,7 @@ export default function Settings() {
 
             setInitial(prev => {
                 return {
-                    username: r.username,
+                    title: r.username,
                     email: r.email,
                     avatar: prev.avatar
                 }
@@ -62,7 +62,7 @@ export default function Settings() {
                 setAvatar(r.image_url);
                 setInitial(prev => {
                     return {
-                        username: prev.username,
+                        title: prev.username,
                         email: prev.email,
                         avatar: r.image_url
                     }

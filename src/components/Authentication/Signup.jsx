@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./Authentication.module.css";
-import "./InputStyle.css";
+import "../InputStyle.css";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from "universal-cookie";
 
@@ -13,10 +13,10 @@ export default function Signup() {
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = () => {
-        fetch('/auth/sign-in', {
+        fetch('/auth/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({password: password, email: email})
+            body: JSON.stringify({password: password, email: email, avatar: avatar, username: username})
         }).then(r => r.text()).then(r => {
             r = JSON.parse(r);
 

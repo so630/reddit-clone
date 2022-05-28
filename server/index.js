@@ -20,6 +20,9 @@ app.use('/subreddits', subredditRoutes);
 const postRoutes = require('./routes/post');
 app.use('/posts', postRoutes);
 
+const commentRoutes = require('./routes/comments');
+app.use('/comments', commentRoutes);
+
 app.listen(3001, () =>
   console.log('Express server is running on localhost:3001')
 );

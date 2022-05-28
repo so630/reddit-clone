@@ -77,6 +77,10 @@
     line-height: 19px;
 }
 
+
+
+
+
 .votes {
     display: inline-block;
 
@@ -128,5 +132,6 @@
     border-radius: 2px;
 
     width: 100%;
-    height: 735px;
+    height: fit-content;
+    padding-bottom: 40px;
 }

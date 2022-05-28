@@ -6,12 +6,16 @@ import Cookies from "universal-cookie";
 import {Link, useParams} from "react-router-dom";
 import AnimatedNumber from "react-animated-numbers";
 import Votes from "../../cards-global/Votes";
+import Comment from "./comment/Comment";
+import CommentForm from "./comment/CommentForm";
 
 export default function Post() {
 
     const {id} = useParams();
     const [data, setData] = useState({});
     const [time, setTime] = useState('');
+
+    const [comments, setComments] = useState([]);
 
     let title = <Link to={`/r/${data.subreddit_id}`}><span style={{color: "#FF4500"}}>/r/</span><span style={{color: "#000"}}>{data.name}</span></Link>;
 
@@ -32,7 +36,16 @@ export default function Post() {
                 setTime(datetime + " minute(s) ");
             }
         });
+
+        updateComments();
     }, []);
+
+    const updateComments = () => {
+        fetch(`/comments/comments?post=${id}`).then(r => r.json()).then(r => {
+            setComments(r);
+            console.log(r);
+        })
+    }
 
     const setResult = (resultPassed) => {
       setData(prev => {
@@ -56,6 +69,14 @@ export default function Post() {
                     <p>{time} ago by <span>{data.username}</span></p>
                     <h5>{data.description}</h5>
                     {data.image_url && <img src={data.image_url} alt="image"/>}
+                </div>
+                <hr/>
+                <div className={styles.container}>
+                    <h6>1 comment</h6>
+                    <div className={styles.comments}>
+                        {comments.map(({text, username, result}) => <Comment username={username} title={text} result={result} />)}
+                        <CommentForm post_id={id} update={updateComments} />
+                    </div>
                 </div>
             </div>
         </>

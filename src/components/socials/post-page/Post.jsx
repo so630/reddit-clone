@@ -41,19 +41,23 @@ export default function Post() {
     }, []);
 
     const updateComments = () => {
-        fetch(`/comments/comments?post=${id}`).then(r => r.json()).then(r => {
-            setComments(r);
-            console.log(r);
-        })
+        let user_id = new Cookies().get('session')?.split('\t')[1];
+
+        if (user_id) {
+            fetch(`/comments/comments?post=${id}&user_id=${user_id}`).then(r => r.json()).then(r => {
+                setComments(r);
+            })
+        } else {
+            fetch(`/comments/comments?post=${id}`).then(r => r.json()).then(r => {
+                setComments(r);
+            })
+        }
     }
 
     const setResult = (resultPassed) => {
       setData(prev => {
           let pc = prev;
           pc['result'] = resultPassed;
-          setTimeout(() => {
-              console.log(data);
-          }, 3000);
           return pc;
       });
     }
@@ -72,9 +76,9 @@ export default function Post() {
                 </div>
                 <hr/>
                 <div className={styles.container}>
-                    <h6>1 comment</h6>
+                    <h6>{comments.length} {comments.length > 1 || comments.length === 0 ? 'comments' : 'comment'}</h6>
                     <div className={styles.comments}>
-                        {comments.map(({text, username, result}) => <Comment username={username} title={text} result={result} />)}
+                        {comments.map(({text, username, result, comment_id, vote}) => <Comment vote={vote} id={comment_id} username={username} title={text} result={result} />)}
                         <CommentForm post_id={id} update={updateComments} />
                     </div>
                 </div>

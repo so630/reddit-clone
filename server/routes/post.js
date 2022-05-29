@@ -132,16 +132,16 @@ router.post('/unvote', (req, res) => {
     let qd = 'DELETE FROM downvotes WHERE user_id=? AND post_id=?';
     let pq = 'SELECT (COUNT(u.user_id) - COUNT(d.user_id)) AS result FROM posts LEFT JOIN upvotes u on posts.post_id = u.post_id LEFT JOIN downvotes d on posts.post_id = d.post_id where posts.post_id=? GROUP BY posts.post_id';
 
-    conn.query(q, [user_id, post_id], (err, results, fields) => {
-        if (err) throw err;
-        conn.query(qd, [user_id, post_id], (err, results, fields) => {
+        conn.query(q, [user_id, post_id], (err, results, fields) => {
             if (err) throw err;
-            conn.query(pq, [post_id], (err, results, fields) => {
+            conn.query(qd, [user_id, post_id], (err, results, fields) => {
                 if (err) throw err;
-                res.json(results);
+                conn.query(pq, [post_id], (err, results, fields) => {
+                    if (err) throw err;
+                    res.json(results);
+                })
             })
         })
-    })
 })
 
 router.get('/post', (req, res) => {

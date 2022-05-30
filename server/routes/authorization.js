@@ -6,7 +6,7 @@ const router = express.Router();
 const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Saneu493',
+    password: process.env.PASS,
     database: 'reddit_clone'
 });
 

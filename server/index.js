@@ -23,7 +23,9 @@ app.use('/posts', postRoutes);
 const commentRoutes = require('./routes/comments');
 app.use('/comments', commentRoutes);
 
-app.listen(3001, () =>
+const PORT = process.env.PORT || 80;
+
+app.listen(PORT, () =>
   console.log('Express server is running on localhost:3001')
 );
 

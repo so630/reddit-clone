@@ -26,7 +26,5 @@ app.use('/comments', commentRoutes);
 const PORT = process.env.PORT || 80;
 
 app.listen(PORT, () =>
-  console.log('Express server is running on localhost:3001')
+  console.log('Express server is running on ' + PORT)
 );
-
-module.exports = app;

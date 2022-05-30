@@ -26,3 +26,5 @@ app.use('/comments', commentRoutes);
 app.listen(3001, () =>
   console.log('Express server is running on localhost:3001')
 );
+
+module.exports = app;

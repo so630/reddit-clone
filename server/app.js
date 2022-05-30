@@ -24,4 +24,10 @@ app.use('/posts', postRoutes);
 const commentRoutes = require('./routes/comments');
 app.use('/comments', commentRoutes);
 
+const PORT = process.env.PORT || 80;
+
+app.listen(PORT, () =>
+  console.log('Express server is running on ' + PORT)
+);
+
 module.exports.handler = serverless(app);

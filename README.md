@@ -35,4 +35,5 @@ I intend to continue developing this project, and I have a few features in mind 
     <li>user profiles: in reddit, you can view the profile of someone and see their recent posts and upvotes, 
     I would like to implement this feature as well.
 </li>
+    <li>modular design: I would like to make the website viewable on all devices and have a responsive design</li>
 </ul>

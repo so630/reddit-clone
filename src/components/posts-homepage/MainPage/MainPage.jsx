@@ -13,7 +13,7 @@ export default function MainPage() {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`/posts/posts?method=${method}`).then(r => r.json()).then(r => {
+        fetch(`https://sleepy-plateau-92845.herokuapp.com/posts/posts?method=${method}`).then(r => r.json()).then(r => {
             setPosts(r);
             setLoading(false);
         })
@@ -22,7 +22,7 @@ export default function MainPage() {
         document.addEventListener('selection-topbar', (event) => {
             setPosts([]);
             setLoading(true)
-            fetch(`/posts/posts?method=${event.detail}`).then(r => r.json()).then(r => {
+            fetch(`https://sleepy-plateau-92845.herokuapp.com/posts/posts?method=${event.detail}`).then(r => r.json()).then(r => {
                 setPosts(r);
                 setMethod(event.detail);
                 setLoading(false);

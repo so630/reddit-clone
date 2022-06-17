@@ -29,20 +29,20 @@ export default function Subreddit() {
             }
         });
 
-        fetch(`/subreddits/posts?subreddit_id=${id}&method=${menu}`).then(r => r.json()).then(r => {
+        fetch(`https://sleepy-plateau-92845.herokuapp.com/subreddits/posts?subreddit_id=${id}&method=${menu}`).then(r => r.json()).then(r => {
             console.log(r);
             setPosts(r);
         })
 
         document.addEventListener('selection-topbar', (event) => {
-            fetch(`/subreddits/posts?subreddit_id=${id}&method=${event.detail}`).then(r => r.json()).then(r => {
+            fetch(`https://sleepy-plateau-92845.herokuapp.com/subreddits/posts?subreddit_id=${id}&method=${event.detail}`).then(r => r.json()).then(r => {
                 setPosts(r);
                 setMenu(event.detail);
             })
         })
 
         document.addEventListener('post', () => {
-            fetch(`/subreddits/posts?subreddit_id=${id}&method=${menu}`).then(r => r.json()).then(r => {
+            fetch(`https://sleepy-plateau-92845.herokuapp.com/subreddits/posts?subreddit_id=${id}&method=${menu}`).then(r => r.json()).then(r => {
                 setPosts(r);
             })
         })

@@ -26,7 +26,7 @@ export default function Post() {
         let user_id = new Cookies().get('session')?.split('\t')[1];
 
         setPostLoading(true)
-        fetch(`/posts/post?post=${id}&user=${user_id}`).then(r => r.json()).then(r => {
+        fetch(`https://sleepy-plateau-92845.herokuapp.com/posts/post?post=${id}&user=${user_id}`).then(r => r.json()).then(r => {
             setData(r[0]);
             setPostLoading(false);
 
@@ -54,12 +54,12 @@ export default function Post() {
 
         setCommentLoading(true)
         if (user_id) {
-            fetch(`/comments/comments?post=${id}&user_id=${user_id}`).then(r => r.json()).then(r => {
+            fetch(`https://sleepy-plateau-92845.herokuapp.com/comments/comments?post=${id}&user_id=${user_id}`).then(r => r.json()).then(r => {
                 setComments(r);
                 setCommentLoading(false);
             })
         } else {
-            fetch(`/comments/comments?post=${id}`).then(r => r.json()).then(r => {
+            fetch(`https://sleepy-plateau-92845.herokuapp.com/comments/comments?post=${id}`).then(r => r.json()).then(r => {
                 setComments(r);
                 setCommentLoading(false);
             })

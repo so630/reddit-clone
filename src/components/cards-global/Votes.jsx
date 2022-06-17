@@ -11,7 +11,7 @@ export default function Votes({result, id, vote, setResult}) {
     const upvote = () => {
         if (new Cookies().get('session') && selection !== 'top') {
             setSelection('top') // selection === 'top' ? undefined : 'top'
-            fetch('/posts/upvote', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/posts/upvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session')?.split('\t')[1], post_id: id})
@@ -24,7 +24,7 @@ export default function Votes({result, id, vote, setResult}) {
             })
         } else if (new Cookies().get('session') && selection === "top") {
             setSelection(undefined)
-            fetch('/posts/unvote', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/posts/unvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session')?.split('\t')[1], post_id: id})
@@ -41,7 +41,7 @@ export default function Votes({result, id, vote, setResult}) {
     const downvote = () => {
         if (new Cookies().get('session') && selection !== 'bottom') {
             setSelection('bottom') //selection === 'bottom' ? undefined : 'bottom'
-            fetch('/posts/downvote', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/posts/downvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session')?.split('\t')[1], post_id: id})
@@ -56,7 +56,7 @@ export default function Votes({result, id, vote, setResult}) {
             })
         } else if (new Cookies().get('session') && selection === "bottom") {
             setSelection(undefined)
-            fetch('/posts/unvote', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/posts/unvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session')?.split('\t')[1], post_id: id})

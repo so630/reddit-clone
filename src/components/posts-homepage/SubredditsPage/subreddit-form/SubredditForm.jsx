@@ -21,7 +21,7 @@ export default function SubredditForm({handleClose}) {
         let id = cookies.get('session').split('\t')[1];
         document.querySelector('#name').value = '';
         document.querySelector('#description').value = '';
-        fetch('/subreddits/create', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/subreddits/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name: name, description: desc, user: id})

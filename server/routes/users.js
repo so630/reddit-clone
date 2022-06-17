@@ -1,12 +1,13 @@
 const express = require('express');
 const mysql = require("mysql");
+const config = require("./config");
 const router = express.Router();
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.PASS,
-    database: 'reddit_clone'
+const conn = mysql.createPool({
+    host: config.DB_HOST,
+    user: config.DB_USERNAME,
+    password: config.DB_PASSWORD,
+    database: config.DB_DATABASE
 });
 
 router.post('/details', (req, res) => {

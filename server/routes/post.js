@@ -1,12 +1,13 @@
 const express = require('express');
 const mysql = require("mysql");
+const config = require("./config");
 const router = express.Router();
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.PASS,
-    database: 'reddit_clone'
+const conn = mysql.createPool({
+    host: config.DB_HOST,
+    user: config.DB_USERNAME,
+    password: config.DB_PASSWORD,
+    database: config.DB_DATABASE
 });
 
 process.on('uncaughtException', function (err) {
@@ -145,7 +146,7 @@ router.post('/unvote', (req, res) => {
 })
 
 router.get('/post', (req, res) => {
-    let id = req.query.id;
+    let id = req.query.post;
     let user = req.query.user;
     let q = 'SELECT s.subreddit_id AS subreddit_id, name, posts.description, username, title, image_url, TIMESTAMPDIFF(MINUTE, time_posted, NOW()) AS time_passed, (COUNT(u2.user_id) - COUNT(d.user_id)) AS result FROM posts LEFT JOIN subreddits s on posts.subreddit_id = s.subreddit_id LEFT JOIN users u on posts.poster_id = u.user_id LEFT JOIN photos p on posts.photo_id = p.photo_id LEFT JOIN upvotes u2 on posts.post_id = u2.post_id LEFT JOIN downvotes d on posts.post_id = d.post_id WHERE posts.post_id=? GROUP BY posts.post_id ORDER BY time_passed;';
     let quser = 'SELECT user_id FROM upvotes WHERE post_id=? AND user_id=?';
@@ -160,17 +161,13 @@ router.get('/post', (req, res) => {
             if (err) throw err;
             conn.query(quser, [id, user], (err, results2, fields) => {
                 if (results2[0]) {
-                    if (results2[0].user_id === 6) {
-                        results[0]['vote'] = 'upvote';
-                        res.json(results);
-                    }
+                    results[0]['vote'] = 'upvote';
+                    res.json(results);
                 } else {
                     conn.query(quserd, [id, user], (err, results2, fields) => {
                         if (results2[0]) {
-                            if (results2[0].user_id === 6) {
-                                results[0]['vote'] = 'downvote';
-                                res.json(results);
-                            }
+                            results[0]['vote'] = 'downvote';
+                            res.json(results);
                         } else {
                             res.json(results);
                         }

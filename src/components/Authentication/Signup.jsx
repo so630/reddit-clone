@@ -13,7 +13,7 @@ export default function Signup() {
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = () => {
-        fetch('/auth/register', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/auth/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({password: password, email: email, avatar: avatar, username: username})
@@ -23,7 +23,7 @@ export default function Signup() {
             const cookies = new Cookies();
             cookies.set('session', r.hash + '\t' + r.id, { path: '/', maxAge: 2*60*60 });
 
-            fetch('/auth/authorize', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/auth/authorize', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({hash: cookies.get('session').split('\t')[0], id: cookies.get('session').split('\t')[1]})

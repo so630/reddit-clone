@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "mysql": "^2.18.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^3.4.0",
     "sass": "^1.51.0",
+    "serverless-http": "^3.0.1",
     "universal-cookie": "^4.0.4"
   },
   "scripts": {
@@ -20,7 +22,7 @@
     "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server start"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://sleepy-plateau-92845.herokuapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },

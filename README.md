@@ -1,45 +1,38 @@
-# React application with Express server
+# Reddit Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Then an Express server was added in the `server` directory. The server is proxied via the `proxy` key in `package.json`.
+# Visit
+You can visit the site [here](https://reddify.surge.sh)
 
-## Using this project
+# Technologies
 
-1. Clone the project, change into the directory and install the dependencies.
+## Backend
 
-   ```bash
-   git clone https://github.com/philnash/react-express-starter.git
-   cd react-express-starter
-   npm install
-   ```
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) 
 
-2. Create a `.env` file for environment variables in your server.
+## Frontend
 
-   ```bash
-   touch .env
-   ```
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-3. Start the server
+# Description
 
-   You can start the server on its own with the command:
+this is a bare-bones clone of the ever popular reddit, which is a popular social media.
+with features such as comments (without replies) on posts, upvoting and downvoting posts, 
+creating subreddits, etc.
 
-   ```bash
-   npm run server
-   ```
+# Development Plan
 
-   Run the React application on its own with the command:
+I intend to continue developing this project, and I have a few features in mind to implement
 
-   ```bash
-   npm start
-   ```
+## Features To Implement
 
-   Run both applications together with the command:
-
-   ```bash
-   npm run dev
-   ```
-
-   The React application will run on port 3000 and the server port 3001.
-
-## React Twilio starter
-
-The [twilio branch](https://github.com/philnash/react-express-starter/tree/twilio) is a similar setup but also provides endpoints with basic [Access Tokens](https://www.twilio.com/docs/iam/access-tokens) for [Twilio Programmable Chat](https://www.twilio.com/docs/chat) and [Twilio Programmable Video](https://www.twilio.com/docs/video). You can use the project as a base for building React chat or video applications.
+<ul>
+    <li>nested comments: comments replying to comments replying to comments, this is a very core part of
+        what makes reddit so successful and I would love to implement it
+    </li>
+    <li>joining subreddits: Joining subreddits and restricting posting to only subreddit members is something
+        that I definitely want to and should implement so that I can further polish this project
+    </li>
+    <li>user profiles: in reddit, you can view the profile of someone and see their recent posts and upvotes, 
+    I would like to implement this feature as well.
+</li>
+</ul>

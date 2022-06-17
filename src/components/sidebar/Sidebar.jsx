@@ -18,20 +18,27 @@ export default function Sidebar({}) {
     const [dropdown, setDropdown] = useState(false);
     const [username, setUsername] = useState('');
     const [redirect, setRedirect] = useState(true);
+    const [authorized, setAuthorized] = React.useState(false);
+
+    document.addEventListener('authorize', () => {
+        const cookies = new Cookies();
+        setAuthorized(cookies.get('session') !== undefined);
+    })
 
     const getUsername = () => {
         const cookies = new Cookies();
         let id = cookies.get('session')?.split('\t')[1];
-
+        console.log(id);
         if (!id) {
             return;
         }
 
-        fetch('/user/details', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/user/details', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({id: id})
         }).then(r => r.text()).then(r => {
+            console.log(r);
             r = JSON.parse(r);
             setUsername(r.username);
         })
@@ -45,6 +52,9 @@ export default function Sidebar({}) {
         })
 
         getUsername();
+
+        const cookies = new Cookies();
+        setAuthorized(cookies.get('session') !== undefined);
 
     }, []);
 
@@ -92,7 +102,7 @@ export default function Sidebar({}) {
 
                 <div className={styles.options}>
                     <MenuItem image={home} name="Home" linkTo={"/home"} />
-                    <MenuItem image={subreddits} name="My subreddits" linkTo={"/subreddits"}/>
+                    {authorized && <MenuItem image={subreddits} name="My subreddits" linkTo={"/subreddits"}/>}
                 </div>
             </div>
         </>

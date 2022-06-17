@@ -9,16 +9,16 @@ export default function CommentVotes({result, id, vote}) {
     const [resultState, setResultState] = useState(result);
 
     const cast_vote = (selection) => {
-        if (selection === 'top') {
-            fetch('/comments/upvote', {
+        if (selection === 'top' && new Cookies().get('session')) {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/comments/upvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session').split('\t')[1], comment: id})
             }).then(r => r.json()).then(r => {
                 setResultState(r[0].result);
             })
-        } else if (selection === 'bottom') {
-            fetch('/comments/downvote', {
+        } else if (selection === 'bottom' && new Cookies().get('session')) {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/comments/downvote', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_id: new Cookies().get('session').split('\t')[1], comment: id})
@@ -26,13 +26,15 @@ export default function CommentVotes({result, id, vote}) {
                 setResultState(r[0].result);
             })
         } else {
-            fetch('/comments/unvote', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({user_id: new Cookies().get('session').split('\t')[1], comment: id})
-            }).then(r => r.json()).then(r => {
-                setResultState(r[0].result);
-            })
+            if (new Cookies().get('session')) {
+                fetch('https://sleepy-plateau-92845.herokuapp.com/comments/unvote', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: new Cookies().get('session').split('\t')[1], comment: id})
+                }).then(r => r.json()).then(r => {
+                    setResultState(r[0].result);
+                })
+            }
         }
     }
 
@@ -41,15 +43,19 @@ export default function CommentVotes({result, id, vote}) {
         <div className={styles.votes + ' ' + styles2.votes}>
             <img src={arrow_nofill} alt="" className={selection === 'top' &&
                 styles.fill} onClick={() => {
-                setSelection(selection === 'top' ? undefined : 'top')
-                cast_vote(selection === 'top' ? undefined : 'top');
+                    if (new Cookies().get('session')) {
+                        setSelection(selection === 'top' ? undefined : 'top')
+                        cast_vote(selection === 'top' ? undefined : 'top');
+                    }
             }}/>
             <p>{resultState}</p>
             <img id={styles['bottom']} src={arrow_nofill}
                  className={selection === 'bottom' && styles.fill_bottom}
                  onClick={() => {
-                     setSelection(selection === 'bottom' ? undefined : 'bottom');
-                     cast_vote(selection === 'bottom' ? undefined : 'bottom');
+                     if (new Cookies().get('session')) {
+                         setSelection(selection === 'bottom' ? undefined : 'bottom');
+                         cast_vote(selection === 'bottom' ? undefined : 'bottom');
+                     }
                  }}
                  alt="" />
         </div>

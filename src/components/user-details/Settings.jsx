@@ -16,7 +16,7 @@ export default function Settings() {
 
     const handleSubmit = () => {
         setLoading(true)
-        fetch('/user/edit', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/user/edit', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username: username, email: email, id: id, avatar: avatar})
@@ -36,7 +36,7 @@ export default function Settings() {
             return;
         }
 
-        fetch('/user/details', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/user/details', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({id: id})
@@ -54,7 +54,7 @@ export default function Settings() {
                 }
             })
 
-            fetch('/user/avatar', {
+            fetch('https://sleepy-plateau-92845.herokuapp.com/user/avatar', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: avatar_id})

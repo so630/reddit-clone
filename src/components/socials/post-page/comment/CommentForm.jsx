@@ -12,7 +12,7 @@ export default function CommentForm({post_id, update}) {
     const comment_post = () => {
         let user_id = new Cookies().get('session').split('\t')[1];
 
-        fetch('/comments/comment', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/comments/comment', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({comment: comment, user_id: user_id, post_id: post_id})

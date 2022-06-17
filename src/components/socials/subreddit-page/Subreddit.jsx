@@ -17,7 +17,7 @@ export default function Subreddit() {
     let title = <><span style={{color: "#FF4500"}}>/r/</span><span style={{color: "#000"}}>{subredditTitle}</span></>;
 
     useEffect(() => {
-        fetch('/subreddits/subreddit', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/subreddits/subreddit', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({subreddit_id: id})

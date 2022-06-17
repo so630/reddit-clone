@@ -49,7 +49,7 @@ export default function PostForm({cancel, subreddit_id}) {
         let image_url = post.image_url;
         let poster_id = new Cookies().get('session').split('\t')[1];
 
-        fetch('/posts/create', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/posts/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({title: title, description: description, image_url: image_url === '' ? null : image_url, poster_id: poster_id, subreddit_id: subreddit_id})

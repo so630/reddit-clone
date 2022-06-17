@@ -14,7 +14,7 @@ export default function Subreddits() {
 
     const updateSubreddits = () => {
         setLoading(true);
-        fetch('/subreddits/user-subreddits', {
+        fetch('https://sleepy-plateau-92845.herokuapp.com/subreddits/user-subreddits', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({user: new Cookies().get('session').split('\t')[1]})
